@@ -13,6 +13,7 @@
         "doctrine/orm": "^2.5",
 		"zendframework/zend-developer-tools": "dev-master",
         "doctrine/doctrine-orm-module": "dev-master",
-        "symfony/yaml": "^2.7"
+        "symfony/yaml": "^2.7",
+        "bjyoungblood/BjyProfiler": "^1.1"
     }
 }
