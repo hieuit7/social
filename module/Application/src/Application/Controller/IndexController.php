@@ -22,4 +22,10 @@ class IndexController extends AbstractActionController
         
         return new ViewModel();
     }
+    public function testAction() {
+        $a = "haha tao cuoiwf";
+        return new ViewModel(array(
+            'haha' => $a
+        ));
+    }
 }
