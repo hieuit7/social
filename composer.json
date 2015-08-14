@@ -6,14 +6,23 @@
         "framework",
         "zf2"
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "http://github.com/hieuit7/social"
+        }
+    ],
     "homepage": "http://framework.zend.com/",
     "require": {
         "php": ">=5.5",
         "zendframework/zendframework": "~2.5",
         "doctrine/orm": "^2.5",
-		"zendframework/zend-developer-tools": "dev-master",
+        "zendframework/zend-developer-tools": "dev-master",
         "doctrine/doctrine-orm-module": "dev-master",
         "symfony/yaml": "^2.7",
         "bjyoungblood/BjyProfiler": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {"Application\\Model\\": "module/Application/src/Application/Model/"}
     }
 }

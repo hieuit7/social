@@ -16,9 +16,16 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-        //$em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        //$data = $em->getRepository('Application\Entity\AppUsers')->findAll();
-        $this->getServiceLocator('doctrine.entitymanager.orm_default');
+        $em = $this->getDoctrine();
+        //$re = new \Application\Entity\Test();
+        //$re->setName("hehe");
+        //$em->persist($re);
+        //$em->flush();
+        $data = $em->getRepository('Application\Entity\Users')->createQueryBuilder('t')->select('t')->setCacheable(true)->getQuery()->getResult();
+        echo "<pre>";
+        print_r($data)
+        ;
+        echo "</pre>";
         
         return new ViewModel();
     }
@@ -27,5 +34,12 @@ class IndexController extends AbstractActionController
         return new ViewModel(array(
             'haha' => $a
         ));
+    }
+    /**
+     * @return \Doctrine\ORM\EntityManager Description
+     */
+    public function getDoctrine() {
+        
+        return $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
     }
 }

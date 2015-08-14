@@ -69,87 +69,61 @@ return array(
         ),
         'factories' => array(
             'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
-            'Zend\Db\Adapter\Adapter' => function ($sm) {
-                $adapter = new BjyProfiler\Db\Adapter\ProfilingAdapter(array(
-                    'driver' => 'pdo',
-                    'dsn' => 'mysql:dbname=radius;host=127.0.0.1',
-                    'database' => 'radius',
-                    'username' => 'root',
-                    'password' => '1234',
-                    'hostname' => '127.0.0.1',
-                ));
-
-                if (php_sapi_name() == 'cli') {
-                    $logger = new Zend\Log\Logger();
-                    // write queries profiling info to stdout in CLI mode
-                    $writer = new Zend\Log\Writer\Stream('php://output');
-                    $logger->addWriter($writer, Zend\Log\Logger::DEBUG);
-                    $adapter->setProfiler(new BjyProfiler\Db\Profiler\LoggingProfiler($logger));
-                } else {
-                    $adapter->setProfiler(new BjyProfiler\Db\Profiler\Profiler());
-                }
-                if (isset($dbParams['options']) && is_array($dbParams['options'])) {
-                    $options = $dbParams['options'];
-                } else {
-                    $options = array();
-                }
-                $adapter->injectProfilingStatementPrototype($options);
-                return $adapter;
-            },
-                ),
+            'Zend\Db\Adapter\Adapter' => 'Application\Services\DbProfilerFactory',
+            'my_redis_alias' => 'Application\Services\RedisDoctrineFactory'
+        ),
+    ),
+    'translator' => array(
+        'locale' => 'vi_VN',
+        'translation_file_patterns' => array(
+            array(
+                'type' => 'phpArray',
+                'base_dir' => __DIR__ . '/../language' . __NAMESPACE__,
+                'pattern' => '%s.php',
             ),
-            'translator' => array(
-                'locale' => 'vi_VN',
-                'translation_file_patterns' => array(
-                    array(
-                        'type' => 'phpArray',
-                        'base_dir' => __DIR__ . '/../language' . __NAMESPACE__,
-                        'pattern' => '%s.php',
-                    ),
-                ),
+        ),
+    ),
+    'controllers' => array(
+        'invokables' => array(
+            'Application\Controller\Index' => 'Application\Controller\IndexController',
+            'Application\Controller\Test' => 'Application\Controller\TestController'
+        ),
+    ),
+    'view_manager' => array(
+        'display_not_found_reason' => true,
+        'display_exceptions' => true,
+        'doctype' => 'HTML5',
+        'not_found_template' => 'error/404',
+        'exception_template' => 'error/index',
+        'template_map' => array(
+            'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
+            'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
+            'error/404' => __DIR__ . '/../view/error/404.phtml',
+            'error/index' => __DIR__ . '/../view/error/index.phtml',
+        ),
+        'template_path_stack' => array(
+            __DIR__ . '/../view',
+        ),
+    ),
+    'doctrine' => array(
+        'driver' => array(
+            'application_entities' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => array(__DIR__ . '/../src/Application/Entity')
             ),
-            'controllers' => array(
-                'invokables' => array(
-                    'Application\Controller\Index' => 'Application\Controller\IndexController',
-                    'Application\Controller\Test' => 'Application\Controller\TestController'
-                ),
-            ),
-            'view_manager' => array(
-                'display_not_found_reason' => true,
-                'display_exceptions' => true,
-                'doctype' => 'HTML5',
-                'not_found_template' => 'error/404',
-                'exception_template' => 'error/index',
-                'template_map' => array(
-                    'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
-                    'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
-                    'error/404' => __DIR__ . '/../view/error/404.phtml',
-                    'error/index' => __DIR__ . '/../view/error/index.phtml',
-                ),
-                'template_path_stack' => array(
-                    __DIR__ . '/../view',
-                ),
-            ),
-            'doctrine' => array(
-                'driver' => array(
-                    'application_entities' => array(
-                        'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
-                        'cache' => 'array',
-                        'paths' => array(__DIR__ . '/../src/Application/Entity')
-                    ),
-                    'orm_default' => array(
-                        'drivers' => array(
-                            'Application\Entity' => 'application_entities'
-                        )
-                    )
+            'orm_default' => array(
+                'drivers' => array(
+                    'Application\Entity' => 'application_entities'
                 )
+            )
+        )
+    ),
+    // Placeholder for console routes
+    'console' => array(
+        'router' => array(
+            'routes' => array(
             ),
-            // Placeholder for console routes
-            'console' => array(
-                'router' => array(
-                    'routes' => array(
-                    ),
-                ),
-            ),
-        );
-        
+        ),
+    ),
+);
