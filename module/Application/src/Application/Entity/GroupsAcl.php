@@ -35,52 +35,5 @@ class GroupsAcl extends \Application\Model\Entity
     private $group;
 
 
-
-    /**
-     * Set acl
-     *
-     * @param \Application\Entity\Acl $acl
-     *
-     * @return GroupsAcl
-     */
-    public function setAcl(\Application\Entity\Acl $acl = null)
-    {
-        $this->acl = $acl;
-
-        return $this;
-    }
-
-    /**
-     * Get acl
-     *
-     * @return \Application\Entity\Acl
-     */
-    public function getAcl()
-    {
-        return $this->acl;
-    }
-
-    /**
-     * Set group
-     *
-     * @param \Application\Entity\Groups $group
-     *
-     * @return GroupsAcl
-     */
-    public function setGroup(\Application\Entity\Groups $group)
-    {
-        $this->group = $group;
-
-        return $this;
-    }
-
-    /**
-     * Get group
-     *
-     * @return \Application\Entity\Groups
-     */
-    public function getGroup()
-    {
-        return $this->group;
-    }
 }
+

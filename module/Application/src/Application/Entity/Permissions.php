@@ -20,28 +20,5 @@ class Permissions extends \Application\Model\Entity
     private $action;
 
 
-
-    /**
-     * Set action
-     *
-     * @param boolean $action
-     *
-     * @return Permissions
-     */
-    public function setAction($action)
-    {
-        $this->action = $action;
-
-        return $this;
-    }
-
-    /**
-     * Get action
-     *
-     * @return boolean
-     */
-    public function getAction()
-    {
-        return $this->action;
-    }
 }
+

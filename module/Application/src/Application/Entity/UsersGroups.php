@@ -35,52 +35,5 @@ class UsersGroups extends \Application\Model\Entity
     private $user;
 
 
-
-    /**
-     * Set group
-     *
-     * @param \Application\Entity\Groups $group
-     *
-     * @return UsersGroups
-     */
-    public function setGroup(\Application\Entity\Groups $group = null)
-    {
-        $this->group = $group;
-
-        return $this;
-    }
-
-    /**
-     * Get group
-     *
-     * @return \Application\Entity\Groups
-     */
-    public function getGroup()
-    {
-        return $this->group;
-    }
-
-    /**
-     * Set user
-     *
-     * @param \Application\Entity\Users $user
-     *
-     * @return UsersGroups
-     */
-    public function setUser(\Application\Entity\Users $user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \Application\Entity\Users
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
 }
+
