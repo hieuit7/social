@@ -13,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class Acl extends \Application\Model\Entity
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
      * @var \Application\Entity\Modules
      *
      * @ORM\ManyToOne(targetEntity="Application\Entity\Modules")

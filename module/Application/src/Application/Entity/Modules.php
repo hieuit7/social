@@ -13,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class Modules extends \Application\Model\Entity
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="route_name", type="string", length=150, nullable=true)

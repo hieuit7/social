@@ -15,6 +15,15 @@ class Category extends \Application\Model\Entity
     /**
      * @var integer
      *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="featured", type="integer", nullable=true)
      */
     private $featured;

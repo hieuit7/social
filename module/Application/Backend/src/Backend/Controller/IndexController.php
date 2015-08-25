@@ -7,26 +7,16 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Application\Controller;
-
-use Zend\Mvc\Controller\AbstractActionController;
+namespace Application\Backend\Controller;
+use Application\Controller\ApplicationController;
 use Zend\View\Model\ViewModel;
 
-class IndexController extends ApplicationController
+class IndexController extends ApplicationController 
 {
     public function indexAction()
     {
         $em = $this->getDoctrine();
-        //$re = new \Application\Entity\Test();
-        //$re->setName("hehe");
-        //$em->persist($re);
-        //$em->flush();
         $data = $em->getRepository('Application\Entity\Users')->createQueryBuilder('t')->select('t')->setCacheable(true)->getQuery()->getResult();
-        echo "<pre>";
-        print_r($data)
-        ;
-        echo "</pre>";
-        
         return new ViewModel();
     }
     public function testAction() {

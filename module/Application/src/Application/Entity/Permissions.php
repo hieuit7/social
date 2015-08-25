@@ -13,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class Permissions extends \Application\Model\Entity
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="action", type="boolean", nullable=true)

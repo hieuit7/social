@@ -11,18 +11,12 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Description of Entity
  * @ORM\Entity
+ * @ORM\Cache("NONSTRICT_READ_WRITE")
  * @author hieun
  */
 class Entity {
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
+    
 
     /**
      * @var string
@@ -31,14 +25,7 @@ class Entity {
      */
     private $name;
     
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId() {
-        return $this->id;
-    }
+    
     
     /**
      * get name

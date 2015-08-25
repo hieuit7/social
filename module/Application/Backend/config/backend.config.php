@@ -10,26 +10,26 @@
 return array(
     'router' => array(
         'routes' => array(
-            'home' => array(
+            'backend' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
-                    'route' => '/',
+                    'route' => '/admin',
                     'defaults' => array(
-                        'controller' => 'Application\Controller\Index',
+                        'controller' => 'Application\Backend\Controller\Index',
                         'action' => 'index',
                     ),
                 ),
             ),
             // The following is a route to simplify getting started creating
-            // new controllers and actions without needing to create a new
-            // module. Simply drop new controllers in, and you can access them
-            // using the path /application/:controller/:action
-            'application' => array(
+// new controllers and actions without needing to create a new
+// module. Simply drop new controllers in, and you can access them
+// using the path /application/:controller/:action
+            'admin' => array(
                 'type' => 'Literal',
                 'options' => array(
-                    'route' => '/application',
+                    'route' => '/admin',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Application\Controller',
+                        '__NAMESPACE__' => 'Application\Backend\Controller',
                         'controller' => 'Index',
                         'action' => 'index',
                     ),
@@ -44,21 +44,18 @@ return array(
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                             ),
-                            'defaults' => array(
-                            ),
+                            'defaults' => array(),
                         ),
                     ),
                 ),
             ),
-            'test' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
-                'options' => array(
-                    'route' => '/test',
-                    'defaults' => array(
-                        'controller' => 'Application\Controller\Index',
-                        'action' => 'test',
-                    ),
-                ),
+        ),
+    ),
+    'navigation' => array(
+        'backend' => array(
+            array(
+                'label' => 'Dashboard',
+                'route' => 'backend',
             ),
         ),
     ),
@@ -70,7 +67,8 @@ return array(
         'factories' => array(
             'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
             'Zend\Db\Adapter\Adapter' => 'Application\Services\DbProfilerFactory',
-            'my_redis_alias' => 'Application\Services\RedisDoctrineFactory'
+            'my_redis_alias' => 'Application\Services\RedisDoctrineFactory',
+            'navigation' => 'Application\Backend\Services\NavigationFactory'
         ),
     ),
     'translator' => array(
@@ -85,8 +83,7 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController',
-            'Application\Controller\Test' => 'Application\Controller\TestController'
+            'Application\Backend\Controller\Index' => 'Application\Backend\Controller\IndexController',
         ),
     ),
     'view_manager' => array(
@@ -96,34 +93,14 @@ return array(
         'not_found_template' => 'error/404',
         'exception_template' => 'error/index',
         'template_map' => array(
-            'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
-            'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
+           // 'application/backend/layout' => __DIR__ . '../view/backend/layout.phtml',
+            'application/frontend/layout' => __DIR__ . '../view/frontend/layout.phtml',
+            'application/controller/index/index' => __DIR__ . '/../view/application/index/index.phtml',
             'error/404' => __DIR__ . '/../view/error/404.phtml',
             'error/index' => __DIR__ . '/../view/error/index.phtml',
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
-        ),
-    ),
-    'doctrine' => array(
-        'driver' => array(
-            'application_entities' => array(
-                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
-                'cache' => 'array',
-                'paths' => array(__DIR__ . '/../src/Application/Entity')
-            ),
-            'orm_default' => array(
-                'drivers' => array(
-                    'Application\Entity' => 'application_entities'
-                )
-            )
-        )
-    ),
-    // Placeholder for console routes
-    'console' => array(
-        'router' => array(
-            'routes' => array(
-            ),
         ),
     ),
 );
