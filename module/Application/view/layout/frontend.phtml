@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <?php echo $this->headTitle('ZF2 ' . $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?php echo $this->headTitle()->setAutoEscape(false) ?>
 
         <?php
         echo $this->headMeta()
@@ -17,7 +17,6 @@
                 ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
                 ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
         ?>
-
         <!-- Scripts -->
         <?php
         echo $this->headScript()
@@ -30,31 +29,50 @@
 
     </head>
     <body>
-        <?php echo $this->navigation('navigation')->menu()->setUlClass('navbar navbar-inverse navbar-fixed-top'); ?>
-        <!--        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12" id="top-navigation">
                     <div class="container">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="<?php //echo $this->url('home')   ?>"><img src="<?php //echo //$this->basePath('img/zf2-logo.png')   ?>" alt="Zend Framework 2"/>&nbsp;<?php //echo $this->translate('Skeleton Application')   ?></a>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <ul class="unstyled list-inline">
+                                    <li>06 Dec 2010</li>
+                                    <li>06 Dec 2010</li>
+                                    <li>06 Dec 2010</li>
+                                    <li>06 Dec 2010</li>
+                                </ul>
+                            </div>
+                            <div col-sm-4>
+                                <div class="pull-right">
+                                    <span>Subscribe by RSS or Emaiil for updates!</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav">
-                                <li class="active"><a href="<?php //echo $this->url('home')   ?>"><?php //echo $this->translate('Home')   ?></a></li>
-                            </ul>
-                        </div>/.nav-collapse 
                     </div>
-                </nav>-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-xs-12" id="header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container">
+            
+            <div class="row">
+                <div class="col-sm-12 col-xs-12" id="navigation">
+                    <?php echo $this->navigation('navigation')->menu()->setPartial('frontend/partials/menu.phtml')->setUlClass('navigation-bar'); ?>
+                </div>
+            </div>
             <?php echo $this->content; ?>
-            <hr>
-            <footer>
-                <p>&copy; 2005 - <?php echo date('Y') ?> by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
-            </footer>
-        </div> <!-- /container -->
+        </div>
         <?php echo $this->inlineScript() ?>
     </body>
 </html>

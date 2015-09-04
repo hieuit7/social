@@ -27,20 +27,32 @@ class Module {
         $params = $router->getParams();
         if (isset($params['__NAMESPACE__']) && isset($params['__CONTROLLER__']) && isset($params['action'])) {
             $controllerClass = $params['__NAMESPACE__'];
-            
             $moduleNamespace = substr($controllerClass, strpos($controllerClass, '\\'));
             $moduleNamespace = substr($moduleNamespace, 1);
             $moduleNamespace = substr($moduleNamespace, 0, strpos($moduleNamespace, '\\Controller'));
             $templatePath = __DIR__;
             $config = $e->getApplication()->getServiceManager()->get('config');
-            if(isset($config['view_manager']['template_map'])){
-                $moduleNamespace = strtolower($moduleNamespace.'/'.$params['__CONTROLLER__']);
-                $templatePath = $templatePath . '/view/'.$moduleNamespace.'/'.$params['action'].'.phtml';
-                $moduleNamespace = str_replace('\\', '/',$moduleNamespace);
-                $template = $moduleNamespace.'/'.$params['action'];
+            if (isset($config['view_manager']['template_map'])) {
+                $moduleNamespace = strtolower($moduleNamespace . '/' . $params['__CONTROLLER__']);
+                $templatePath = $templatePath . '/view/' . $moduleNamespace . '/' . $params['action'] . '.phtml';
+                $moduleNamespace = str_replace('\\', '/', $moduleNamespace);
+                $template = $moduleNamespace . '/' . $params['action'];
                 $config['view_manager']['template_map'][$template] = $templatePath;
                 $result->setTemplate($template);
-            }            
+            }
+
+            //set Title;
+            if (isset($config['view_manager']['siteName'])) {
+                $siteName = $config['view_manager']['siteName'];
+            } else {
+                $siteName = $moduleNamespace;
+            }
+            $viewHelperManager = $e->getApplication()->getServiceManager()->get('viewHelperManager');
+            $headTitle = $viewHelperManager->get('headTitle');
+            $headTitle->setSeparator(' - ');
+            $headTitle->append($params['action']);
+            $headTitle->append($siteName);
+            
         }
     }
 
@@ -53,7 +65,7 @@ class Module {
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/src/Index',
-                    __NAMESPACE__.'\\Video' => __DIR__.'/src/Video'
+                    __NAMESPACE__ . '\\Video' => __DIR__ . '/src/Video'
                 ),
             ),
         );

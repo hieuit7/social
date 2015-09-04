@@ -29,6 +29,7 @@ class Module {
         $moduleNamespace = substr($moduleNamespace, 1);
         $moduleNamespace = substr($moduleNamespace, 0, strpos($moduleNamespace, '\\'));
         $config = $e->getApplication()->getServiceManager()->get('config');
+        
         if (isset($config['view_manager']['template_map'])) {
             $controller->layout(strtolower($moduleNamespace));
         }

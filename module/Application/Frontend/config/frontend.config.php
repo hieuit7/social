@@ -58,6 +58,14 @@ return array(
                 'label' => 'Home',
                 'route' => 'home',
             ),
+            array(
+                'label' => 'Home',
+                'route' => 'home',
+            ),
+            array(
+                'label' => 'Home',
+                'route' => 'home',
+            ),
         ),
     ),
     'service_manager' => array(
@@ -69,7 +77,6 @@ return array(
             'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
             'Zend\Db\Adapter\Adapter' => 'Application\Services\DbProfilerFactory',
             'my_redis_alias' => 'Application\Services\RedisDoctrineFactory',
-            'navigations' => 'Application\Services\NavigationFactory'
         ),
     ),
     'translator' => array(
@@ -88,6 +95,7 @@ return array(
         ),
     ),
     'view_manager' => array(
+        'siteName' => 'News',
         'display_not_found_reason' => true,
         'display_exceptions' => true,
         'doctype' => 'HTML5',
@@ -96,6 +104,7 @@ return array(
         'template_map' => array(
             
         ),
+        
         'template_path_stack' => array(
             __DIR__ . '/../view',
         ),

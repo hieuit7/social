@@ -8,50 +8,6 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 return array(
-    'router' => array(
-        'routes' => array(
-            // The following is a route to simplify getting started creating
-            // new controllers and actions without needing to create a new
-            // module. Simply drop new controllers in, and you can access them
-            // using the path /application/:controller/:action
-            'application' => array(
-                'type' => 'Literal',
-                'options' => array(
-                    'route' => '/application',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Application\Controller',
-                        'controller' => 'Index',
-                        'action' => 'index',
-                    ),
-                ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
-                        'type' => 'Segment',
-                        'options' => array(
-                            'route' => '/[:controller[/:action]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-            'test' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
-                'options' => array(
-                    'route' => '/test',
-                    'defaults' => array(
-                        'controller' => 'Application\Controller\Index',
-                        'action' => 'test',
-                    ),
-                ),
-            ),
-        ),
-    ),
     'service_manager' => array(
         'abstract_factories' => array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
@@ -61,8 +17,7 @@ return array(
             'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
             'Zend\Db\Adapter\Adapter' => 'Application\Services\DbProfilerFactory',
             'my_redis_alias' => 'Application\Services\RedisDoctrineFactory',
-            'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory'
-            
+            'navigation' => 'Application\Services\NavigationFactory'
         ),
     ),
     'translator' => array(
