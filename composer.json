@@ -1,10 +1,12 @@
 {
-    "name": "zendframework/skeleton-application",
+    "name": "hieuit7/skeleton-application",
     "description": "Skeleton Application for ZF2",
     "license": "BSD-3-Clause",
     "keywords": [
         "framework",
-        "zf2"
+        "zf2",
+        "hieuit7",
+        "skeleton"
     ],
     "repositories": [
         {
@@ -12,7 +14,7 @@
             "url": "http://github.com/hieuit7/social"
         }
     ],
-    "homepage": "http://framework.zend.com/",
+    "homepage": "http://nguyenminhhieu.net/",
     "require": {
         "php": ">=5.5",
         "zendframework/zendframework": "~2.5",
@@ -24,7 +26,6 @@
         "zendframework/zend-console": "^2.5"
         
     },
-   
     "autoload": {
         "psr-4": {"Application\\Model\\": "module/Application/src/Application/Model/"}
     }

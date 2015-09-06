@@ -35,9 +35,11 @@ class NavigationFactory extends AbstractNavigationFactory {
     }
 
     protected function getPages(\Zend\ServiceManager\ServiceLocatorInterface $serviceLocator) {
-
-
-
+        
+        
+        $doctrine = $this->getDoctrine($serviceLocator);
+        
+        
         $application = $serviceLocator->get('Application');
         $routeMatch = $application->getMvcEvent()->getRouteMatch();
         if (null === $routeMatch) {
@@ -66,5 +68,12 @@ class NavigationFactory extends AbstractNavigationFactory {
         }
         return $this->pages;
     }
-
+    /**
+     * 
+     * @return \Doctrine\ORM\EntityManager
+     */
+    public function getDoctrine(\Zend\ServiceManager\ServiceLocatorInterface $serviceLocator) {
+        
+        return $serviceLocator->get('doctrine.entitymanager.orm_default');;
+    }
 }

@@ -7,7 +7,7 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Application\Frontend\Video\Controller;
+namespace Application\Frontend\News\Controller;
 use Application\Controller\ApplicationController;
 use Zend\View\Model\ViewModel;
 
@@ -17,7 +17,7 @@ class IndexController extends ApplicationController
     {        
         $em = $this->getDoctrine();
         $data = $em->getRepository('Application\Entity\Users')->createQueryBuilder('t')->select('t')->setCacheable(true)->getQuery()->getResult();
+        
         return new ViewModel();
     }
-   
 }
