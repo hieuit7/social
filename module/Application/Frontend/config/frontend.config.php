@@ -10,7 +10,7 @@
 return array(
     'router' => array(
         'routes' => array(
-            'home' => array(
+            'frontend' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
                     'route' => '/',
@@ -20,34 +20,19 @@ return array(
                         'action' => 'index',
                     ),
                 ),
-            ),
-            // The following is a route to simplify getting started creating
-// new controllers and actions without needing to create a new
-// module. Simply drop new controllers in, and you can access them
-// using the path /application/:controller/:action
-            'test' => array(
-                'type' => 'Literal',
-                'options' => array(
-                    'route' => '/test',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Application\Frontend\Video\Controller',
-                        'controller' => 'Index',
-                        'action' => 'index',
-                    ),
-                ),
                 'may_terminate' => true,
                 'child_routes' => array(
-                    'default' => array(
-                        'type' => 'Segment',
+                    'news' => array(
+                        'type' => 'Zend\Mvc\Router\Http\Literal',
                         'options' => array(
-                            'route' => '/[:controller[/:action]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(),
-                        ),
-                    ),
+                            'route' => 'news',
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Application\Frontend\News\Controller',
+                                'controller' => 'Index',
+                                'action' => 'index',
+                            )
+                        )
+                    )
                 ),
             ),
         ),
@@ -56,15 +41,7 @@ return array(
         'frontend' => array(
             array(
                 'label' => 'Home',
-                'route' => 'home',
-            ),
-            array(
-                'label' => 'Home',
-                'route' => 'home',
-            ),
-            array(
-                'label' => 'Home',
-                'route' => 'home',
+                'route' => 'frontend',
             ),
         ),
     ),
@@ -92,6 +69,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Frontend\Controller\Index' => 'Application\Frontend\Controller\IndexController',
+            'Application\Frontend\Video\Controller\Index' => 'Application\Frontend\Video\Controller\IndexController',
+            'Application\Frontend\News\Controller\Index' => 'Application\Frontend\News\Controller\IndexController',
         ),
     ),
     'view_manager' => array(
@@ -102,9 +81,7 @@ return array(
         'not_found_template' => 'error/404',
         'exception_template' => 'error/index',
         'template_map' => array(
-            
         ),
-        
         'template_path_stack' => array(
             __DIR__ . '/../view',
         ),

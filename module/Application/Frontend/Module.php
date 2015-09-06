@@ -65,7 +65,8 @@ class Module {
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/src/Index',
-                    __NAMESPACE__ . '\\Video' => __DIR__ . '/src/Video'
+                    __NAMESPACE__ . '\\Video' => __DIR__ . '/src/Video',
+                    __NAMESPACE__ . '\\News' => __DIR__ . '/src/News'
                 ),
             ),
         );
