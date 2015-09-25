@@ -35,11 +35,11 @@ class NavigationFactory extends AbstractNavigationFactory {
     }
 
     protected function getPages(\Zend\ServiceManager\ServiceLocatorInterface $serviceLocator) {
-        
-        
+
+
         $doctrine = $this->getDoctrine($serviceLocator);
-        
-        
+
+
         $application = $serviceLocator->get('Application');
         $routeMatch = $application->getMvcEvent()->getRouteMatch();
         if (null === $routeMatch) {
@@ -52,6 +52,9 @@ class NavigationFactory extends AbstractNavigationFactory {
         $moduleNamespace = substr($controllerClass, strpos($controllerClass, '\\'));
         $moduleNamespace = substr($moduleNamespace, 1);
         $moduleNamespace = strtolower(substr($moduleNamespace, 0, strpos($moduleNamespace, '\\')));
+        $document = $this->getDocument($serviceLocator);
+
+
         if (null === $this->pages) {
             $configuration = $serviceLocator->get('Config');
 
@@ -63,17 +66,41 @@ class NavigationFactory extends AbstractNavigationFactory {
                         'Failed to find a navigation container by the name "%s"', $moduleNamespace
                 ));
             }
-            $pages = $this->getPagesFromConfig($configuration['navigation'][$moduleNamespace]);
+            $pages = array();
+            if (!isset($configuration['navagation'][$moduleNamespace]['fromdb'])) {
+                $pages = $this->getPagesFromConfig($configuration['navigation'][$moduleNamespace]);
+            } else {
+                
+            }
+
+
+
             $this->pages = $this->preparePages($serviceLocator, $pages);
         }
         return $this->pages;
     }
+
     /**
      * 
      * @return \Doctrine\ORM\EntityManager
      */
     public function getDoctrine(\Zend\ServiceManager\ServiceLocatorInterface $serviceLocator) {
-        
-        return $serviceLocator->get('doctrine.entitymanager.orm_default');;
+
+        return $serviceLocator->get('doctrine.entitymanager.orm_default');
+        ;
     }
+
+    /**
+     * 
+     * @return \Doctrine\ODM\MongoDB\DocumentManager
+     */
+    public function getDocument(\Zend\ServiceManager\ServiceLocatorInterface $serviceLocator) {
+        return $serviceLocator->get('doctrine.documentmanager.odm_default');
+    }
+
+    private function getPagesFromDb($options = array()) {
+
+        $rp = $document->getRepository('Application\Entity\Mongo\Categories');
+    }
+
 }

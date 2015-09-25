@@ -20,14 +20,21 @@ class Category extends \Application\Model\Entity
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
+    
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="featured", type="integer", nullable=true)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
-    private $featured;
-
+    private $name;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="alias", type="string", length=255, nullable=true)
+     */
+    private $alias;
+    
     /**
      * @var \DateTime
      *
@@ -36,11 +43,54 @@ class Category extends \Application\Model\Entity
     private $created;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated", type="datetime", nullable=true)
+     */
+    private $updated;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", length=65535, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="featured", type="boolean", nullable=true)
+     */
+    private $featured;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="approved", type="boolean", nullable=true)
+     */
+    private $approved;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="state", type="boolean", nullable=true)
+     */
+    private $state;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="menu", type="boolean", nullable=true)
+     */
+    private $menu;
+    
+    
+    /**
      * @var integer
      *
      * @ORM\Column(name="created_by", type="integer", nullable=true)
      */
-    private $createdBy;
+    private $author;
 
     /**
      * @var \Application\Entity\Category

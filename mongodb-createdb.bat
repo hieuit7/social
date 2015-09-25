@@ -1,0 +1,1 @@
+php mongdb.php odm:schema:create

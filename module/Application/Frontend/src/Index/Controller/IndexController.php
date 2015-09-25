@@ -14,12 +14,10 @@ use Zend\View\Model\ViewModel;
 class IndexController extends ApplicationController 
 {
     public function indexAction()
-    {        
-        $em = $this->getDoctrine();
-        $data = $em->getRepository('Application\Entity\Users')->createQueryBuilder('t')->select('t')->setCacheable(true)->getQuery()->getResult();
-        
-                
-        return new ViewModel(array('ss'=>'ss'));
+    {                
+        $mongo = $this->getDocument();
+        $category1 = $mongo->getRepository('Application\Entity\Mongo\Categories')->find('560420f190ca85741f000029'); 
+        return new ViewModel();
     }
     public function testAction() {
         return new ViewModel();

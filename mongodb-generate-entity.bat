@@ -1,0 +1,1 @@
+php mongdb.php odm:generate:documents --generate-annotations=true module\Application\src\

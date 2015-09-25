@@ -57,6 +57,7 @@ class Module {
                 // This will overwrite the native navigation helper
                 'navigation' => function(\Zend\View\HelperPluginManager $pm) {
                     // Setup ACL:
+                    
                     $acl = new \Zend\Permissions\Acl\Acl();
                     $acl->addRole(new GenericRole('member'));
                     $acl->addRole(new GenericRole('admin'));
@@ -67,7 +68,7 @@ class Module {
 
                     // Get an instance of the proxy helper
                     $navigation = $pm->get('Zend\View\Helper\Navigation');
-
+                    
                     // Store ACL and role in the proxy helper:
                     $navigation->setAcl($acl)
                             ->setRole('member');
