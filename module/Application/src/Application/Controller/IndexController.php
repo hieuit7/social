@@ -16,16 +16,17 @@ class IndexController extends ApplicationController
 {
     public function indexAction()
     {
+        echo "<pre>";
+        print_r('die');
+        echo "</pre>";
+        exit;
         $em = $this->getDoctrine();
         //$re = new \Application\Entity\Test();
         //$re->setName("hehe");
         //$em->persist($re);
         //$em->flush();
         $data = $em->getRepository('Application\Entity\Users')->createQueryBuilder('t')->select('t')->setCacheable(true)->getQuery()->getResult();
-        echo "<pre>";
-        print_r($data)
-        ;
-        echo "</pre>";
+        
         
         return new ViewModel();
     }
