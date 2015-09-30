@@ -15,8 +15,8 @@ class IndexController extends ApplicationController
 {
     public function indexAction()
     {                
-        $mongo = $this->getDocument();
-        $category1 = $mongo->getRepository('Application\Entity\Mongo\Categories')->find('560420f190ca85741f000029'); 
+        //$mongo = $this->getDocument();
+        //$category1 = $mongo->getRepository('Application\Entity\Mongo\Categories')->find('560420f190ca85741f000029'); 
         return new ViewModel();
     }
     public function testAction() {

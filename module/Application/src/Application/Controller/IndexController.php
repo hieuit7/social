@@ -16,10 +16,7 @@ class IndexController extends ApplicationController
 {
     public function indexAction()
     {
-        echo "<pre>";
-        print_r('die');
-        echo "</pre>";
-        exit;
+        
         $em = $this->getDoctrine();
         //$re = new \Application\Entity\Test();
         //$re->setName("hehe");

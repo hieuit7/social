@@ -52,7 +52,7 @@ class NavigationFactory extends AbstractNavigationFactory {
         $moduleNamespace = substr($controllerClass, strpos($controllerClass, '\\'));
         $moduleNamespace = substr($moduleNamespace, 1);
         $moduleNamespace = strtolower(substr($moduleNamespace, 0, strpos($moduleNamespace, '\\')));
-        $document = $this->getDocument($serviceLocator);
+        //$document = $this->getDocument($serviceLocator);
 
 
         if (null === $this->pages) {
@@ -87,7 +87,6 @@ class NavigationFactory extends AbstractNavigationFactory {
     public function getDoctrine(\Zend\ServiceManager\ServiceLocatorInterface $serviceLocator) {
 
         return $serviceLocator->get('doctrine.entitymanager.orm_default');
-        ;
     }
 
     /**
@@ -95,7 +94,7 @@ class NavigationFactory extends AbstractNavigationFactory {
      * @return \Doctrine\ODM\MongoDB\DocumentManager
      */
     public function getDocument(\Zend\ServiceManager\ServiceLocatorInterface $serviceLocator) {
-        return $serviceLocator->get('doctrine.documentmanager.odm_default');
+        return ($serviceLocator->has('doctrine.documentmanager.odm_default'))?$serviceLocator->get('doctrine.documentmanager.odm_default'):'';
     }
 
     private function getPagesFromDb($options = array()) {

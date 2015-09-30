@@ -28,6 +28,6 @@ abstract class ApplicationController extends AbstractActionController{
      * @return \Doctrine\ODM\MongoDB\DocumentManager
      */
     public function getDocument() {
-        return $this->getServiceLocator()->get('doctrine.documentmanager.odm_default');
+        return ($this->getServiceLocator()->has('doctrine.documentmanager.odm_default'))?$this->getServiceLocator()->get('doctrine.documentmanager.odm_default'):'';
     }
 }
