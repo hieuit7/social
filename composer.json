@@ -12,6 +12,10 @@
         {
             "type": "vcs",
             "url": "http://github.com/hieuit7/social"
+        },
+        {
+        	"type":"vcs",
+        	"url": "ruby-project/ruby-admin"
         }
     ],
     "homepage": "http://nguyenminhhieu.net/",
@@ -26,10 +30,14 @@
         "zendframework/zend-console": "^2.5",
         "doctrine/mongodb-odm": "~1.0",
         "doctrine/doctrine-mongo-odm-module": "^0.9.1",
-        "sonata-project/doctrine-extensions": "^1.0"
-        
+        "sonata-project/doctrine-extensions": "^1.0",
+        "ruby-project/ruby-admin": "dev-master"
+
     },
     "autoload": {
-        "psr-4": {"Application\\Model\\": "module/Application/src/Application/Model/"}
+        "psr-4": {
+            "Application\\Entity\\": "module/Application/src/Application/Entity/",
+            "Application\\Model\\": "module/Application/src/Application/Model/"
+        }
     }
 }

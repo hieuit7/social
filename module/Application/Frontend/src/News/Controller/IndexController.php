@@ -10,8 +10,9 @@
 namespace Application\Frontend\News\Controller;
 use Application\Controller\ApplicationController;
 use Zend\View\Model\ViewModel;
+use Ruby\Controller\CoreController;
 
-class IndexController extends ApplicationController 
+class IndexController extends CoreController 
 {
     public function indexAction()
     {        

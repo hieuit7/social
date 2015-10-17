@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework (http://framework.zend.com/)
  *
@@ -8,21 +9,23 @@
  */
 
 namespace Application\Backend\Controller;
-use Application\Controller\ApplicationController;
+
+use Ruby\Controller\CoreController;
 use Zend\View\Model\ViewModel;
 
-class IndexController extends ApplicationController 
-{
-    public function indexAction()
-    {
+class IndexController extends CoreController {
+
+    public function indexAction() {
         $em = $this->getDoctrine();
         $data = $em->getRepository('Application\Entity\Users')->createQueryBuilder('t')->select('t')->setCacheable(true)->getQuery()->getResult();
         return new ViewModel();
     }
+
     public function testAction() {
         $a = "haha tao cuoiwf";
         return new ViewModel(array(
             'haha' => $a
         ));
     }
+
 }

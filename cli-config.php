@@ -8,8 +8,8 @@ use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 use Doctrine\DBAL\Types\Type;
 
-//$paths = array("module\\Application\\src\\Application\\Entity");
-$paths = array("module\\Application\\src\\Voyage\\AdminBundle\\Entity");
+$paths = array("module\\Application\\src\\Application\\Entity");
+//$paths = array("module\\Application\\src\\Voyage\\AdminBundle\\Entity");
 $isDevMode = true;
 
 // the connection configuration

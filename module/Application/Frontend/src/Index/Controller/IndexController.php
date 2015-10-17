@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework (http://framework.zend.com/)
  *
@@ -7,19 +8,23 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Application\Frontend\Controller;
-use Application\Controller\ApplicationController;
+namespace Application\Frontend\Index\Controller;
+
+
+use Ruby\Controller\CoreController;
 use Zend\View\Model\ViewModel;
 
-class IndexController extends ApplicationController 
-{
-    public function indexAction()
-    {                
-        //$mongo = $this->getDocument();
-        //$category1 = $mongo->getRepository('Application\Entity\Mongo\Categories')->find('560420f190ca85741f000029'); 
+class IndexController extends CoreController {
+
+    public function indexAction() {
+        $doctrine = $this->getDoctrine();
+        
+        
         return new ViewModel();
     }
+
     public function testAction() {
         return new ViewModel();
     }
+
 }

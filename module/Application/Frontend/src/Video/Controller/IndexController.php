@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework (http://framework.zend.com/)
  *
@@ -6,18 +7,15 @@
  * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
-
 namespace Application\Frontend\Video\Controller;
-use Application\Controller\ApplicationController;
-use Zend\View\Model\ViewModel;
 
-class IndexController extends ApplicationController 
-{
-    public function indexAction()
-    {        
-        $em = $this->getDoctrine();
-        $data = $em->getRepository('Application\Entity\Users')->createQueryBuilder('t')->select('t')->setCacheable(true)->getQuery()->getResult();
-        return new ViewModel();
-    }
-   
+use Zend\View\Model\ViewModel;
+use Ruby\Controller\CoreController;
+
+class IndexController extends CoreController {
+	public function indexAction() {
+		$em = $this->getDoctrine ();
+		$data = $em->getRepository ( 'Application\Entity\Users' )->createQueryBuilder ( 't' )->select ( 't' )->setCacheable ( true )->getQuery ()->getResult ();
+		return new ViewModel ();
+	}
 }
